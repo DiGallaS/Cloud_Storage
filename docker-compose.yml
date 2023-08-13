@@ -1,0 +1,29 @@
+version: "3.0"
+services:
+  app:
+    build: ./
+    ports:
+      - "8081:8081"
+    depends_on:
+      - database
+    environment:
+      PORT: 8081
+      SPRING_DATASOURCE_URL: jdbc:mysql://database:3306/CloudService
+      SPRING_DATASOURCE_USERNAME: root
+      SPRING_DATASOURCE_PASSWORD: mysql
+      SPRING_JPA_HIBERNATE_DDL_AUTO: update
+      SPRING_LIQUIBASE_URL: jdbc:mysql://database:3306/CloudService
+      SPRING_LIQUIBASE_USER: root
+      SPRING_LIQUIBASE_PASSWORD: mysql
+  database:
+    image: mysql
+    container_name: 'CloudService-db'
+    volumes:
+      - /mysql_data:/var/lib/mysql
+    environment:
+      MYSQL_USERNAME: root
+      MYSQL_PASSWORD: mysql
+      MYSQL_ROOT_PASSWORD: mysql
+      MYSQL_DATABASE: CloudService
+    ports:
+      - "3305:3306"
