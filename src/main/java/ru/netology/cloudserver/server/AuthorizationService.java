@@ -24,13 +24,6 @@ public class AuthorizationService {
     private final JwtTokenUtil tokenUtil;
     private final UserService userService;
 
-//    @Autowired
-//    public AuthorizationService(AuthorizationRepository authorizationRepository, AuthenticationManager authenticationManager, JwtTokenUtil tokenUtil) {
-//        this.authorizationRepository = authorizationRepository;
-//        this.authenticationManager = authenticationManager;
-//        this.tokenUtil = tokenUtil;
-//    }
-
     public AuthorizationResponse login(AuthorizationRequest authorizationRequest) {
         final String username = authorizationRequest.getLogin();
         final String password = authorizationRequest.getPassword();
